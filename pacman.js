@@ -22,7 +22,9 @@
  * Authors: Junya Kaneko
  */
 
-var Pacman = function(cx, cy, speed, theta) {
+// パックマンのコンストラクタを定義。
+// パックマンは、位置、速度、移動方向、口の開き具合、口パクの速度、を属性として持つ。
+var Pacman = function (cx, cy, speed, theta) {
     this.position = [cx, cy];
     this.speed = speed;
     this.movingDirection = [0, 0];
@@ -30,51 +32,55 @@ var Pacman = function(cx, cy, speed, theta) {
     this.dTheta = 3;
 };
 
+
+// パックマンのメソッドを定義。
+// 今のところ、メソッドはコンストラクタの持つ prototype オブジェクトのメソッドとして
+// 定義すると覚える。
 Pacman.prototype = {
-    getCx : function() {
+    getCx: function () {
         return this.position[0];
     },
 
-    getCy: function() {
+    getCy: function () {
         return this.position[1];
     },
 
-    getPosition: function(i) {
+    getPosition: function (i) {
         return this.position[i];
     },
 
-    getSpeed : function() {
+    getSpeed: function () {
         return this.speed;
     },
 
-    getTheta : function() {
+    getTheta: function () {
         return this.theta;
     },
 
-    go_left : function() {
+    go_left: function () {
         this.movingDirection = [-1 * this.getSpeed(), 0];
     },
 
-    go_right : function() {
+    go_right: function () {
         this.movingDirection = [this.getSpeed(), 0];
     },
 
-    go_up : function() {
+    go_up: function () {
         this.movingDirection = [0, -1 * this.getSpeed()];
     },
 
-    go_down : function() {
+    go_down: function () {
         this.movingDirection = [0, this.getSpeed()];
     },
 
-    move : function() {
+    move: function () {
         this.chew();
-        for(var i = 0; i < 2; i++) {
+        for (var i = 0; i < 2; i++) {
             this.position[i] += this.movingDirection[i];
         }
     },
 
-    chew : function() {
+    chew: function () {
         if (this.theta >= 30 || this.theta <= 0) {
             this.dTheta *= -1;
         }
@@ -82,7 +88,7 @@ Pacman.prototype = {
         return this.theta;
     },
 
-    draw : function(ctx) {
+    draw: function (ctx) {
         ctx.strokeStyle = "#FF0000";
         ctx.fillStyle = "#FF0000";
         ctx.beginPath();
