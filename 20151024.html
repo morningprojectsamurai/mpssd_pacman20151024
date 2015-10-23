@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+This file is part of "MPS Setagaya Pacman."
+
+MPS Setagaya Pacman is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MPS Setagaya Pacman is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+(c) Junya Kaneko <jyuneko@hotmail.com>
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="pacman.js"></script>
+    <script src="akabei.js"></script>
+</head>
+<body>
+<canvas id="pac-man" width="640" height="480"></canvas>
+<script>
+    var cv = document.getElementById('pac-man');
+    var ctx = cv.getContext("2d");
+    var pacman = new Pacman(50, 50, 3, 30);
+    var akabei = new Akabei(300, 100, 3);
+
+    cv.tabIndex = 1;
+    cv.onkeydown = function(event) {
+        event.preventDefault();
+
+        switch(event.keyCode) {
+            case 37:
+                pacman.go_left();
+                break;
+            case 38:
+                pacman.go_up();
+                break;
+            case 39:
+                pacman.go_right();
+                break;
+            case 40:
+                pacman.go_down();
+                break;
+        }
+    };
+
+    function main_loop(timestamp) {
+        ctx.clearRect(0, 0, cv.width, cv.height);
+        pacman.move();
+        akabei.move(pacman);
+
+        pacman.draw(ctx);
+        akabei.draw(ctx);
+        window.requestAnimationFrame(main_loop);
+    }
+    window.requestAnimationFrame(main_loop);
+</script>
+
+</body>
+</html>
