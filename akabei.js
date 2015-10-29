@@ -53,7 +53,7 @@ Akabei.prototype = {
     draw: function (ctx) {
         cx = this.getCx();
         cy = this.getCy();
-        RADIUS = 50;
+        RADIUS = 20;
         BODY_H = RADIUS;
         LEG_H = RADIUS / 5 * 2;
         ctx.fillStyle = '#FF0000';
@@ -72,13 +72,13 @@ Akabei.prototype = {
         //ctx.stroke();
         ctx.fillStyle = '#FFFFFF';
         ctx.beginPath();
-        ctx.arc(cx - 20, cy - 4, 16, 0, Math.PI * 2);
-        ctx.arc(cx + 20, cy - 4, 16, 0, Math.PI * 2);
+        ctx.arc(cx - 20 * RADIUS / 50, cy - 4, 16 * RADIUS / 50, 0, Math.PI * 2);
+        ctx.arc(cx + 20 * RADIUS / 50, cy - 4, 16 * RADIUS / 50, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#0000FF';
         ctx.beginPath();
-        ctx.arc(cx - 20 - 8, cy - 4, 7, 0, Math.PI * 2);
-        ctx.arc(cx + 20 - 8, cy - 4, 7, 0, Math.PI * 2);
+        ctx.arc(cx + (- 20 - 8) * RADIUS / 50 , cy - 4 * RADIUS / 50, 7 * RADIUS / 50, 0, Math.PI * 2);
+        ctx.arc(cx + (20 - 8) * RADIUS / 50, cy - 4 * RADIUS / 50, 7 * RADIUS / 50, 0, Math.PI * 2);
         ctx.fill();
     }
 };

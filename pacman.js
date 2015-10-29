@@ -89,12 +89,13 @@ Pacman.prototype = {
     },
 
     draw: function (ctx) {
+        RADIUS = 20;
         ctx.strokeStyle = "#FF0000";
         ctx.fillStyle = "#FF0000";
         ctx.beginPath();
-        ctx.arc(this.getCx(), this.getCy(), 50, this.getTheta() * Math.PI / 180, (360 - this.getTheta()) * Math.PI / 180);
+        ctx.arc(this.getCx(), this.getCy(), RADIUS, this.getTheta() * Math.PI / 180, (360 - this.getTheta()) * Math.PI / 180);
         ctx.lineTo(this.getCx(), this.getCy());
-        ctx.lineTo(this.getCx() + 50 * Math.cos(this.getTheta() * Math.PI / 180), this.position[1] + 50 * Math.sin(this.getTheta() * Math.PI / 180));
+        ctx.lineTo(this.getCx() + RADIUS * Math.cos(this.getTheta() * Math.PI / 180), this.position[1] + RADIUS * Math.sin(this.getTheta() * Math.PI / 180));
         ctx.fill();
     }
 };
